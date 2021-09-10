@@ -98,8 +98,6 @@ test_plot <- ggplot(data = test, aes(x = test$df_PC1, y = test$df_PC2, group = t
   geom_point(shape = 19, size = 4)
 test_plot_2 <- test_plot + annotate("rect", xmin=0, xmax=2.6, ymin=0, ymax=0.8, alpha=0.1, fill="red")
 
-
-
 test_plot_2
 #########################################################################################################
 # graph로 적당한 scatter 변수 찾기

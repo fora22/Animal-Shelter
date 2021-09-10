@@ -16,8 +16,6 @@ region = c('강남구', '강동구','강북구','강서구','관악구','광진�
            '마포구','서대문구','서초구','성동구','성북구','송파구',
            '양천구','영등포구','용산구','은평구','종로구','중구','중랑구')
 
-# rownames(s_PCA_A) <- region
-# rownames(s_PCA_C) <- region
 
 A_kmeans<-kmeans(s_PCA_A,center=4)
 km_l_CL <- A_kmeans$cluster
