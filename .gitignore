@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/r,jupyternotebooks,python
-# Edit at https://www.toptal.com/developers/gitignore?templates=r,jupyternotebooks,python
+# Created by https://www.toptal.com/developers/gitignore/api/r,python,jupyternotebooks,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=r,python,jupyternotebooks,visualstudiocode
 
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
@@ -204,4 +204,20 @@ po/*~
 # R package: bookdown caching files
 /*_files/
 
-# End of https://www.toptal.com/developers/gitignore/api/r,jupyternotebooks,python
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/r,python,jupyternotebooks,visualstudiocode
