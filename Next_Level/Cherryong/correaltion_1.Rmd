@@ -1,0 +1,45 @@
+```{r}
+install.packages("readxl")
+library(readxl)
+rm(list=ls())
+df <- read_excel("D:/project/animal_shelter/bigcam/new/EDA_Contest.xlsx" , na = "NA")
+name = df[,1]
+df = df[,-1]
+df = data.frame(df, row.names = name$구별)
+head(df)
+scale_df = scale(df)
+```
+
+```{r}
+head(scale_df)
+```
+```{r}
+resque <- df[,1:3]
+head(resque)
+animal <-df[,4:15]
+head(animal)
+positive <- df[,16:17]
+negative <- df[,18:19]
+```
+
+```{r}
+########################################################################
+# 상관행렬
+```{r}
+install.packages("corrplot")
+show_cor <- function(df.data) {
+  library(corrplot)
+  s_data = scale(df.data, center = TRUE)
+  cor_h = cor(s_data)
+  corrplot(cor_h, is.corr = FALSE, method = "square")
+}
+show_cor(resque)
+
+```
+```{r}
+show_cor(animal)
+show_cor(positive)
+show_cor(negative)
+```
+
+
