@@ -15,7 +15,7 @@ sl_FA = scaler.fit_transform(df_FA)
 sl_PCA = scaler.fit_transform(df_PCA)
 
 from sklearn.mixture import GaussianMixture
-n=4
+n=3
 GMM = GaussianMixture(n_components=n, random_state=333)
 gm_FA = GMM.fit_predict(sl_FA)
 gm_PCA = GMM.fit_predict(sl_PCA)
