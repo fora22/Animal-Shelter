@@ -1,21 +1,21 @@
 rm(list=ls())
-df <- read.csv('./data/EDA_TEST.csv', encoding = 'UTF-8')
+df <- read.csv('./data/DR_result.csv', encoding = 'UTF-8')
 head(df)
 row_names <- df[,1]
 df <- df[,-1]
-rownames(df) <- row_names
+# rownames(df) <- row_names
 df
 
 
-df_FA <- df[1:3]   # 수정 필요
-df_PCA <- df[1:3]   # 수정 필요
+df_FA <- df[1:4]   # 수정 필요
+df_PCA <- df[4:8]   # 수정 필요
 
 
 ################################################################################
 ################################################################################
 # 군집화 개수 결정
 data.raw <- df_PCA
-data.scale <- scale(data.raw)
+d.scale <- scale(data.raw)
 
 ## 덴드로그램
 set.seed(333)
@@ -48,10 +48,10 @@ cluster_analysis <- function(data.scale, name) {
     hc_ward <- hclust(dist_data, method="ward.D")
     
     plot(hc_ward)
-    rect.hclust(hc_ward, k=4)
-    hc <- cutree(hc_ward, k=4)
+    rect.hclust(hc_ward, k=3)
+    hc <- cutree(hc_ward, k=3)
     ## kmeans
-    km_cluster <- kmeans(data.scale, centers = 4, iter.max = 1000)
+    km_cluster <- kmeans(data.scale, centers = 3, iter.max = 1000)
     km <- km_cluster$cluster
     
     
@@ -63,7 +63,7 @@ cluster_analysis <- function(data.scale, name) {
     # library(dbscan)
     # dbscan::kNNdistplot(data.scale, k=3)
     
-    db_cluster <- fpc::dbscan(data.scale, eps = 0.9, MinPts = 3)
+    db_cluster <- fpc::dbscan(data.scale, eps = 1.2, MinPts = 3)
     str(db_cluster)
     
     fviz_cluster(db_cluster, data.scale, stand = FALSE, frame = FALSE, geom = "point")
@@ -117,3 +117,12 @@ rownames(result_sil) <- c("km", "hc", "db", "gm", "ms")
 result_sil
 
 fviz_silhouette(sil)
+
+cluster_result <- data.frame(result_FA, result_PCA)
+head(cluster_result)
+region = c('강남구', '강동구','강북구','강서구','관악구','광진구',
+           '구로구','금천구','노원구','도봉구','동대문구','동작구',
+           '마포구','서대문구','서초구','성동구','성북구','송파구',
+           '양천구','영등포구','용산구','은평구','종로구','중구','중랑구')
+rownames(cluster_result) <- region
+write.csv(cluster_result, file="./data/cluster_result.csv")

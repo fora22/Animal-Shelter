@@ -92,4 +92,7 @@ negative_PCA <- scale(positive)
 
 exportDF = data.frame(resque_MR1, animal_MR1, positive_MR1, negative_MR1,
                     resque_PCA, animal_PCA, positive_PCA, negative_PCA)
-write.csv(exportDF,file="./data/DR_result.csv")
+names(exportDF) <- c('resque_MR1', 'animal_MR1', 'positive_MR1', 'negative_MR1',
+                     'resque_PCA', 'animal_PCA', 'positive_PCA', 'negative_PCA')
+
+write.csv(exportDF,file="./data/DR_result.csv", encoding = "UTF-8")
