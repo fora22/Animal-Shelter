@@ -1,5 +1,5 @@
 rm(list=ls())
-df <- read.csv('./data/EDA_TEST.csv', encoding = 'UTF-8')
+df <- read.csv('./data/EDA_FINAL_Contest.csv', encoding = 'UTF-8')
 head(df)
 row_names <- df[,1]
 df <- df[,-1]
@@ -8,8 +8,8 @@ df
 
 resque <- df[1:3]
 animal <- df[4:9]
-positive <- df[10:11]
-negative <- df[12:13]
+positive <- df[10]
+negative <- df[11]
 
 # install.packages(corrplot)
 # library(corrplot)
@@ -37,7 +37,7 @@ anal_FA_pre <- function(df.data) {
 anal_FA <- function(df.data, nf) {
     scale_df <- scale(df.data, center = TRUE)
     fa.model <- fa(scale_df, nfactors=nf, n.obs=N, rotate="varimax")  
-    fa.diagram(fa.model)
+    fa.diagram(fa.model, digits = 2, sort=FALSE, cut = .1)
     print(fa.model$loadings, cutoff = 0)
     return (fa.model$loadings)
 }
@@ -49,7 +49,7 @@ w_resque <- anal_FA(resque, 1)
 s_resque <- scale(resque, center = TRUE)
 m_resque <- matrix(s_resque, nrow=25)
 resque_MR1 <- m_resque  %*% w_resque[,1]
-avg_resque_MR1 <- apply(s_resque[,1:3], 1, sum) / ncol(s_resque[,1:3])
+
 
 head(animal)
 anal_FA_pre(animal)
@@ -57,23 +57,9 @@ w_animal <- anal_FA(animal, 1)
 s_animal <- scale(animal, center = TRUE)
 m_animal <- matrix(s_animal, nrow=25)
 animal_MR1 <- m_animal  %*% w_animal[,1]
-avg_animal_MR1 <- apply(s_animal[,1:6], 1, sum) / ncol(s_animal[,1:6])
 
-head(positive)
-anal_FA_pre(positive)
-w_positive <- anal_FA(positive, 1)
-s_positive <- scale(positive, center = TRUE)
-m_positive <- matrix(s_positive, nrow=25)
-positive_MR1 <- m_positive  %*% w_positive[,1]
-avg_positive_MR1 <- apply(s_positive[,1:2], 1, sum) / ncol(s_positive[,1:2])
-
-head(negative)
-anal_FA_pre(negative)
-w_negative <- anal_FA(negative, 1)
-s_negative <- scale(negative, center = TRUE)
-m_negative <- matrix(s_negative, nrow=25)
-negative_MR1 <- m_negative  %*% w_negative[,1]
-avg_negative_MR1 <- apply(s_negative[,1:2], 1, sum) / ncol(s_negative[,1:2])
+positive_MR1 <- scale(positive)
+negative_MR1 <- scale(negative)
 
 # FA End
 ################################################################################
@@ -98,13 +84,17 @@ get_PCA <- function(raw_data) {
     
     return(PC1)
 }
+anal_pca(resque)
+anal_pca(animal)
 
 resque_PCA <- get_PCA(resque)
 animal_PCA <- get_PCA(animal)
-positive_PCA <- get_PCA(positive)
-negative_PCA <- get_PCA(negative)
+positive_PCA <- scale(positive)
+negative_PCA <- scale(negative)
 
 exportDF = data.frame(resque_MR1, animal_MR1, positive_MR1, negative_MR1,
-                    avg_resque_MR1, avg_animal_MR1, avg_positive_MR1, avg_negative_MR1,
                     resque_PCA, animal_PCA, positive_PCA, negative_PCA)
-write.csv(exportDF,file="./data/FA_RESULT.csv")
+names(exportDF) <- c('resque_MR1', 'animal_MR1', 'positive_MR1', 'negative_MR1',
+                     'resque_PCA', 'animal_PCA', 'positive_PCA', 'negative_PCA')
+
+write.csv(exportDF,file="./data/DR_result.csv")
