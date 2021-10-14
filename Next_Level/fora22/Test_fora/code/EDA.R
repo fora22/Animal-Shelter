@@ -84,15 +84,16 @@ get_PCA <- function(raw_data) {
     
     return(PC1)
 }
-
+a <- anal_pca(resque)
+a
 resque_PCA <- get_PCA(resque)
 animal_PCA <- get_PCA(animal)
 positive_PCA <- scale(positive)
-negative_PCA <- scale(positive)
+negative_PCA <- scale(negative)
 
 exportDF = data.frame(resque_MR1, animal_MR1, positive_MR1, negative_MR1,
                     resque_PCA, animal_PCA, positive_PCA, negative_PCA)
 names(exportDF) <- c('resque_MR1', 'animal_MR1', 'positive_MR1', 'negative_MR1',
                      'resque_PCA', 'animal_PCA', 'positive_PCA', 'negative_PCA')
 
-write.csv(exportDF,file="./data/DR_result.csv", encoding = "UTF-8")
+write.csv(exportDF,file="./data/DR_result.csv")

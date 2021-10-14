@@ -3,10 +3,10 @@ import numpy as np
 import pandas as pd
 import cluster_visualize as clu_viz
 
-df = pd.read_csv('../data/EDA_TEST.csv')
+df = pd.read_csv('../data/DR_result.csv')
 df = df.iloc[:, 1:]
-df_FA = df
-df_PCA = df
+df_FA = df.iloc[:,0:4]
+df_PCA = df.iloc[:,4:8]
 
 from sklearn.preprocessing import StandardScaler
 
