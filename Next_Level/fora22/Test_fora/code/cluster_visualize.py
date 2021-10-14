@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 def visualize_cluster_plot(clusterobj, dataframe, label_name, iscenter=True):
     if iscenter :
         centers = clusterobj.cluster_centers_

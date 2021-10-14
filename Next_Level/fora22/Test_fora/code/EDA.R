@@ -37,7 +37,7 @@ anal_FA_pre <- function(df.data) {
 anal_FA <- function(df.data, nf) {
     scale_df <- scale(df.data, center = TRUE)
     fa.model <- fa(scale_df, nfactors=nf, n.obs=N, rotate="varimax")  
-    fa.diagram(fa.model)
+    fa.diagram(fa.model, digits = 2, sort=FALSE, cut = .1)
     print(fa.model$loadings, cutoff = 0)
     return (fa.model$loadings)
 }
@@ -84,8 +84,9 @@ get_PCA <- function(raw_data) {
     
     return(PC1)
 }
-a <- anal_pca(resque)
-a
+anal_pca(resque)
+anal_pca(animal)
+
 resque_PCA <- get_PCA(resque)
 animal_PCA <- get_PCA(animal)
 positive_PCA <- scale(positive)

@@ -39,6 +39,7 @@ plot(c(1:20), tot_withinss, type = "b",
 ################################################################################
 ################################################################################
 # 군집화 실행
+## kmeans
 
 cluster_analysis <- function(data.scale) {
     ## 계층적 군집
@@ -53,9 +54,8 @@ cluster_analysis <- function(data.scale) {
     km_cluster <- kmeans(data.scale, centers = 4, iter.max = 1000)
     km <- km_cluster$cluster
     
-    
+    fviz_cluster(km_cluster, data=data.scale, stand = T)
    
-    
     # gaussian mixture
     # install.packages("mclustt")
     # library(mclust)
@@ -86,6 +86,7 @@ dbscan_analysis <- function(data.scale, eps, minpts) {
     
     return(db)
 }
+
 
 dbscan_analysis(scale(df_FA), 1.3, 2)
 dbscan_analysis(scale(df_PCA), 1.2, 3)
