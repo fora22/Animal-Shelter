@@ -1,0 +1,21 @@
+서울빅캠 분석 데이터, 그래프는 seoul_data, seoul_graph 폴더에 있음
+
+# 15번 슬라이드
+  - seoul_graph/FA
+  - seoul_graph/PCA
+
+# 20번 슬라이드
+  - seoul_graph/Clustering
+
+# 21번 슬라이드
+'최적군집결정 : Hierarchical X FA, Gaussian Mixture X PCA'로 수정
+  - seoul_graph/Silhouette/Silhouette_result.png
+  - seoul_graph/Visuallize/Clustering Result.png
+
+# 22번 슬라이드
+## 군집 분석결과
+  - seoul_graph/Visuallize/Clustering Result.png
+
+## 최상위 4개 구 선정
+  - seoul_graph/Visuallize/Final Result.png
+  - 'AHP 분석 및 군집 분석 결과의 상위 5개 구 중 겹치는 구를 우선적으로 진행' 밑에 '강서구, 관악구, 강남구, 송파구' 추가 

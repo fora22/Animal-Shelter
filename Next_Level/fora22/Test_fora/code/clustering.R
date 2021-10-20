@@ -51,7 +51,7 @@ cluster_analysis <- function(data.scale) {
     rect.hclust(hc_ward, k=3)
     hc <- cutree(hc_ward, k=3)
     ## kmeans
-    km_cluster <- kmeans(data.scale, centers = 4, iter.max = 1000)
+    km_cluster <- kmeans(data.scale, centers = 3, iter.max = 1000)
     km <- km_cluster$cluster
     
     fviz_cluster(km_cluster, data=data.scale, stand = T)
