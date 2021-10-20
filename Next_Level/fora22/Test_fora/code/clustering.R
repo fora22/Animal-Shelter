@@ -1,5 +1,5 @@
 rm(list=ls())
-df <- read.csv('./data/DR_result.csv', encoding = 'UTF-8')
+df <- read.csv('./seoul_data/DR_result.csv', encoding = 'UTF-8')
 head(df)
 row_names <- df[,1]
 df <- df[,-1]
@@ -89,7 +89,7 @@ dbscan_analysis <- function(data.scale, eps, minpts) {
 
 
 dbscan_analysis(scale(df_FA), 1.3, 2)
-dbscan_analysis(scale(df_PCA), 1.2, 3)
+dbscan_analysis(scale(df_PCA), 1.4, 2)
 
 km_hc_db <- data.frame(cbind(cluster_analysis(scale(df_FA)), dbscan_analysis(scale(df_FA), 1.3, 2)
                              , cluster_analysis(scale(df_PCA)), dbscan_analysis(scale(df_PCA), 1.2, 3)))
@@ -98,7 +98,7 @@ names(km_hc_db) <- c("km_FA","hc_FA","db_FA","km_PCA","hc_PCA", "db_PCA")
 head(km_hc_db)
 ################################################################################
 ################################################################################
-gm_ms <- read.csv('./data/gm_ms.csv', encoding = 'UTF-8')
+gm_ms <- read.csv('./seoul_data/gm_ms.csv', encoding = 'UTF-8')
 head(gm_ms)
 
 result_FA <- data.frame(km_hc_db[,1:3], gm_ms[,2:3])
@@ -133,7 +133,7 @@ region = c('강남구', '강동구','강북구','강서구','관악구','광진�
            '마포구','서대문구','서초구','성동구','성북구','송파구',
            '양천구','영등포구','용산구','은평구','종로구','중구','중랑구')
 rownames(cluster_result) <- region
-write.csv(cluster_result, file="./data/cluster_result.csv")
+write.csv(cluster_result, file="./seoul_data/cluster_result.csv")
 
 ################################################################################
 ################################################################################
@@ -148,3 +148,4 @@ show_sil <- function(clus, raw_data) {
 
 show_sil(result_PCA[,4], df_PCA)
 show_sil(result_FA[,4], df_FA)
+

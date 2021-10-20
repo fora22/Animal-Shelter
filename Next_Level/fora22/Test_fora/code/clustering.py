@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import cluster_visualize as clu_viz
 
-df = pd.read_csv('../data/DR_result.csv')
+df = pd.read_csv('../seoul_data/DR_result.csv', encoding="EUC-KR")
 df = df.iloc[:, 1:]
 df_FA = df.iloc[:,0:4]
 df_PCA = df.iloc[:,4:8]
@@ -16,7 +16,7 @@ sl_PCA = scaler.fit_transform(df_PCA)
 
 from sklearn.mixture import GaussianMixture
 n=3
-GMM = GaussianMixture(n_components=n, random_state=333)
+GMM = GaussianMixture(n_components=n, random_state=0)
 gm_FA = GMM.fit_predict(sl_FA)
 gm_PCA = GMM.fit_predict(sl_PCA)
 
@@ -68,4 +68,4 @@ data = {
     "ms_PCA" : ms_PCA
 }
 gm_ms = pd.DataFrame(data)
-gm_ms.to_csv('../data/gm_ms.csv', encoding = 'utf-8')
+gm_ms.to_csv('../seoul_data/gm_ms.csv', encoding = 'utf-8')
