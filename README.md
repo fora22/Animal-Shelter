@@ -102,6 +102,7 @@ Selection and analysis of optimal location for public animal protection centers 
 
 ## Manual
 
+`Main`, `Next_Level` 폴더 동일 -> 공공 빅데이터 작업물은 `Main`, 서울시 빅데이터 캠퍼스 제출은 `Next_Level`에 저장해놓음
 * 소스코드는 `code` 폴더
 * raw data, export한 data는 `data`폴더
 * 개요서, 보고서, 발표 PPT의 경우는 `document` 폴더
